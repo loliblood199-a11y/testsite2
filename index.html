@@ -7,11 +7,26 @@
     <script>
         async function fetchDataAndRedirect() {
             try {
+				// Get the full URL of the current page
+				const url = window.location.href;
+
+				// Create a URL object
+				const urlObj = new URL(url);
+
+				// Use URLSearchParams to get the query parameters
+				const params = new URLSearchParams(urlObj.search);
+
+				// Get the 'user_id' parameter
+				const userId = params.get('user_id');
+
+				// Log the user_id to the console
+				console.log('User ID:', userId);
+
                 // Define the authentication token
                 const authToken = '13962230fe43ae5eafa9fec42de3b6859b8d9f27cdc69ae43c5332b369bb4496';
                 // Define the request body
                 const requestBody = {
-                    user_id: 'm6Q8xk4QMZUCQ2DyKKauow'
+                    user_id: userId
                 };
                 // Log the request body for debugging
                 console.log('Request Body:', requestBody);
