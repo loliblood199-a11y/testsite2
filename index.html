@@ -19,8 +19,6 @@
 				// Get the 'user_id' parameter
 				const userId = params.get('user_id');
 
-				// Log the user_id to the console
-				document.write('User ID:', userId);
 
                 // Define the authentication token
                 const authToken = 'fb0004f9bf12a67319c68b4743442c788dc5ad6051e1d74ca60a144515f60dbe';
@@ -42,13 +40,16 @@
 				});
 				// Log the response status for debugging
                 console.log('Response Status:', response.status);
-				document.write('Response :', response)
+				
+				var answer = await response.json();
+				document.write('Response :', answer)
+				
                 // Check if the response status is 200
-                if (response.status === 200) {
+                /*if (response.status === 200) {
                     // Redirect to www.google.com
                     window.location.href = 'https://loliblood199-a11y.github.io/testsite2/testload.html';
                 }
-				/*if (response.status === 200) {
+				if (response.status === 200) {
 					// Extract the value you need from the response
 					// For example, let's assume the value is in response.data.someValue
 					const someValue = encodeURIComponent(response.data.massage);
@@ -58,13 +59,13 @@
 
 					// Redirect to the constructed URL
 					window.location.href = redirectUrl;
-				}*/				
+				}			
 				else {
                     // Log the response text for debugging
                     const errorText = await response.text();
                     console.error('Error Response:', errorText);
                     throw new Error('Network response was not ok');
-                }
+                }*/	
 
 			
             } catch (error) {
