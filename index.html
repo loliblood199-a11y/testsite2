@@ -38,10 +38,6 @@
 				  },
 				  body: JSON.stringify(requestBody)
 				});
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-
 				const answer = await response.json();
 
 				// Log the full response to understand its structure
@@ -49,10 +45,6 @@
 
 				// Access the message from the response
 				// Ensure the property name is correct
-				const message = answer.response.message; // Corrected from 'massage' to 'message'
-
-				// Log the message to the console
-				document.write('Message:', message);
 				
                 // Check if the response status is 200
                 /*if (response.status === 200) {
