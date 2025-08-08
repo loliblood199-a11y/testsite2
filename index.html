@@ -42,7 +42,7 @@
                 console.log('Response Status:', response.status);
 				
 				var answer = await response.json();
-				document.write('Response :', answer)
+				document.write('Response :', answer.response.massage)
 				
                 // Check if the response status is 200
                 /*if (response.status === 200) {
