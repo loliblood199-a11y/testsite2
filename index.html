@@ -38,11 +38,14 @@
 				  },
 				  body: JSON.stringify(requestBody)
 				});
-				// Log the response status for debugging
-                console.log('Response Status:', response.status);
-				
 				var answer = await response.json();
-				document.write('Response :', answer.response.massage)
+
+				// Access the message from the response
+				var message = answer.response.massage; // Assuming "massage" is the correct key
+
+				// Log the message to the console
+				document.write('Message:', message);
+				document.write('Full Response:', JSON.stringify(answer, null, 2));
 				
                 // Check if the response status is 200
                 /*if (response.status === 200) {
