@@ -39,20 +39,22 @@
 				  body: JSON.stringify(requestBody)
 				});
 				
-				let answer = await response.json();
 				
-				// Log the full response to understand its structure
-				document.write('Full Response:', answer.massage);
 
 				// Access the message from the response
 				// Ensure the property name is correct
 				
                 // Check if the response status is 200
-                /*if (response.status === 200) {
+                if (response.status === 200) {
+					let answer = await response.json();
+				
+					// Log the full response to understand its structure
+					document.write('Full Response:', answer.massage);
+				
                     // Redirect to www.google.com
-                    window.location.href = 'https://loliblood199-a11y.github.io/testsite2/testload.html';
+                    window.location.href = 'https://loliblood199-a11y.github.io/testsite2/testload.html?group='+ answer.massage;
                 }
-				if (response.status === 200) {
+				/*if (response.status === 200) {
 					// Extract the value you need from the response
 					// For example, let's assume the value is in response.data.someValue
 					const someValue = encodeURIComponent(response.data.massage);
@@ -62,13 +64,13 @@
 
 					// Redirect to the constructed URL
 					window.location.href = redirectUrl;
-				}			
+				}*/			
 				else {
                     // Log the response text for debugging
                     const errorText = await response.text();
                     console.error('Error Response:', errorText);
                     throw new Error('Network response was not ok');
-                }*/	
+                }	
 
 			
             } catch (error) {
