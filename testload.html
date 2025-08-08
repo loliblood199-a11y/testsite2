@@ -5,5 +5,24 @@
 </head>
 <body>
     <h1>Loaded</h1>
+	<script>
+    // Function to get the value of a specific query parameter by name
+    function getQueryParam(param) {
+        // Get the full query string from the URL
+        const queryString = window.location.search;
+
+        // Use URLSearchParams to parse the query string
+        const urlParams = new URLSearchParams(queryString);
+
+        // Return the value of the specified parameter
+        return urlParams.get(param);
+    }
+
+    // Example usage: Extract the value of 'hiddenParam'
+    const hiddenValue = getQueryParam('hiddenParam');
+
+    // Log the extracted value to the console
+    console.log('Hidden Value:', hiddenValue);
+</script>
 </body>
 </html>
