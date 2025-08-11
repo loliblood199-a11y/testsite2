@@ -17,7 +17,8 @@
         // Return the value of the specified parameter
         return urlParams.get(param);
     }
-
+	async function fetchDataAndRedirect() {
+            try {
     // Extract the value of 'group'
     const group = getQueryParam('group');
 
@@ -46,7 +47,10 @@
 				
                   
                 }
-	
+	} catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+	fetchDataAndRedirect();
 </script>
 </body>
 </html>
