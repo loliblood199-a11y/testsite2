@@ -18,11 +18,35 @@
         return urlParams.get(param);
     }
 
-    // Example usage: Extract the value of 'hiddenParam'
-    const hiddenValue = getQueryParam('group');
+    // Extract the value of 'group'
+    const group = getQueryParam('group');
 
-    // Log the extracted value to the console
-    document.write('Hidden Value:', hiddenValue);
+    // Define the authentication token
+	const authToken = 'fb0004f9bf12a67319c68b4743442c788dc5ad6051e1d74ca60a144515f60dbe';
+	// Define the request body
+	const requestBody = {
+		group_encoded: group
+	};
+	
+	let  response = await fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/database', {
+	  method: 'POST',
+	  headers: {
+		'Content-Type': 'application/json',
+		'Accept': 'application/json', 
+		'API-TOKEN': authToken
+	  },
+	  body: JSON.stringify(requestBody)
+	});
+	
+	if (response.status === 200) {
+					let answer = await response.json();
+				
+					// Log the full response to understand its structure
+					document.write('Full Response:', answer.database);
+				
+                  
+                }
+	
 </script>
 </body>
 </html>
