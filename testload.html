@@ -7,49 +7,43 @@
     <h1>Loaded</h1>
 	<script>
     // Function to get the value of a specific query parameter by name
-    function getQueryParam(param) {
-        // Get the full query string from the URL
-        const queryString = window.location.search;
-
-        // Use URLSearchParams to parse the query string
-        const urlParams = new URLSearchParams(queryString);
-
-        // Return the value of the specified parameter
-        return urlParams.get(param);
-    }
 	async function fetchDataAndRedirect() {
-            try {
-    // Extract the value of 'group'
-    const group = getQueryParam('group');
-
-    // Define the authentication token
-	const authToken = 'fb0004f9bf12a67319c68b4743442c788dc5ad6051e1d74ca60a144515f60dbe';
-	// Define the request body
-	const requestBody = {
-		group_encoded: group
-	};
+		try {
+			// Get the full query string from the URL
+			const queryString = window.location.search;
+			// Use URLSearchParams to parse the query string
+			const urlParams = new URLSearchParams(queryString);
+			// Return the value of the specified parameter
+			const group =  urlParams.get('group');
+			
+			// Define the authentication token
+			const authToken = 'fb0004f9bf12a67319c68b4743442c788dc5ad6051e1d74ca60a144515f60dbe';
+			// Define the request body
+			const requestBody = {
+				group_encoded: group
+			};
 	
-	let  response = await fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/database', {
-	  method: 'POST',
-	  headers: {
-		'Content-Type': 'application/json',
-		'Accept': 'application/json', 
-		'API-TOKEN': authToken
-	  },
-	  body: JSON.stringify(requestBody)
-	});
-	
-	if (response.status === 200) {
-					let answer = await response.json();
-				
-					// Log the full response to understand its structure
-					document.write('Full Response:', answer.database);
-				
-                  
-                }
+			let  response = await fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/database', {
+			  method: 'POST',
+			  headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json', 
+				'API-TOKEN': authToken
+			  },
+			  body: JSON.stringify(requestBody)
+			});
+			
+			if (response.status === 200) {
+							let answer = await response.json();
+						
+							// Log the full response to understand its structure
+							document.write('Full Response:', answer.database);
+						
+						  
+						}
 	} catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
-            }
+            }}
 	fetchDataAndRedirect();
 </script>
 </body>
