@@ -80,8 +80,8 @@ async function loadInstructions() {
       const div = document.createElement('div');
       div.className = 'instruction';
       div.innerHTML = `<h2>${name}</h2><textarea id="myTextArea" cols=50 rows=10 readonly>${text}</textarea><button id="editBtn">Edit</button>`;
-	  const btn = div.innerHTML.getElementById('editBtn');
-	  const textarea = div.innerHTML.getElementById('myTextArea');
+	  const btn = div.innerHTML.textarea;
+	  const textarea = div.innerHTML.button;
 	  btn.addEventListener('click', () => {
 		const isReadonly = textarea.hasAttribute('readonly');
 		if (isReadonly) {
