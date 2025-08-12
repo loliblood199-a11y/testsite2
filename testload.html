@@ -46,9 +46,9 @@
 			/* 1. Определяем, что нам передали */
   
 			let dataArray = [];
-			if (Array.isArray(rawData)) {
+			if (Array.isArray(rawData.database)) {
 			  // если пришёл массив, используем его напрямую
-			  dataArray = rawData;
+			  dataArray = rawData.database;
 			} else if (rawData && typeof rawData === 'object') {
 			  // если пришёл один объект, но он может содержать массив внутри
 			  if (Array.isArray(rawData.database)) {
@@ -59,7 +59,6 @@
 			  }
 			}
 			if (response.status === 200) {
-							
 							const container = document.getElementById('instructions');
 							/* 1. Определяем, что нам передали */
 
@@ -90,5 +89,4 @@
 	document.addEventListener('DOMContentLoaded', loadInstructions);
 </script>
 </body>
-
 </html>
