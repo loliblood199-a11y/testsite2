@@ -68,7 +68,7 @@
                     const rawText = item.instruction ||
                                     item.instruction_item?.instruction ||
                                     'No text found';
-                    const text = JSON.parse(rawText);
+					const text = JSON.parse(`"${rawText}"`);
                     const div = document.createElement('div');
                     div.className = 'instruction';
                     // Unique ids
