@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Instructions from API</title>
-<style>
+	<head>
+		<meta charset="UTF-8">
+			<title>Instructions from API</title>
+			<style>
   body{font-family:Arial,Helvetica,sans-serif;padding:20px;}
   .instruction{margin-bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px;}
   .instruction h2{margin:0 0 10px;font-size:1.2em;}
   .instruction p{margin:0;}
   hr{border:none;border-top:1px solid #eee;margin:30px 0;}
 </style>
-</head>
-<body>
-
-<h1>Instructions from API</h1>
-<div id="instructions"></div>
-
-<!-- 1 The script is loaded with `defer` so that it runs only after the DOM has been fully parsed. -->
-<script defer>
+		</head>
+		<body>
+			<h1>Instructions from API</h1>
+			<div id="instructions"></div>
+			<!-- 1 The script is loaded with `defer` so that it runs only after the DOM has been fully parsed. -->
+			<script defer>
 async function loadInstructions() {
   try {
 		// Get the full query string from the URL
@@ -73,16 +71,20 @@ async function loadInstructions() {
       const name = item.instruction_name ||
                    item.instruction_item?.instruction_name ||
                    `Instruction ${idx + 1}`;
-      const text = item.instruction.replace(/\\/g, '\'); ||
-                   item.instruction_item?.instruction.replace(/\\/g, '\'); ||
+      const rawText = item.instruction  ||
+                   item.instruction_item?.instruction ||
                    'No text found';
+	  const text = rawText.replace(/\\/g, '\');
 
       const div = document.createElement('div');
       div.className = 'instruction';
       		// Uniq ids
 		const textareaId = `myTextArea_${idx}`;
 		const buttonId    = `editBtn_${idx}`;
-		div.innerHTML = `<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${buttonId}">Edit</button>`;
+		div.innerHTML = `
+				<h2>${name}</h2>
+				<textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea>
+				<button id="${buttonId}">Edit</button>`;
 		// Adding element to DOM (пример: в элемент с id="root")
 		container.appendChild(div);
 		
@@ -117,8 +119,7 @@ async function loadInstructions() {
 
 /* 7️  Wait until the DOM is ready before attempting to load instructions. */
 document.addEventListener('DOMContentLoaded', loadInstructions);
-</script>
 
-</body>
-
-</html>
+			</script>
+		</body>
+	</html>
