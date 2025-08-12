@@ -45,7 +45,7 @@ async function loadInstructions() {
 			});	
   
   /* 3  Parse the JSON payload. */
-    if (!response.ok) throw new Error(`Ошибка сети: ${response.status}`);
+    if (!response.ok) throw new Error(`Network error: ${response.status}`);
     const rawData = await response.json();
 
     /* 4 Normalise the payload into a single array called `instructions`. */
@@ -79,7 +79,7 @@ async function loadInstructions() {
 
       const div = document.createElement('div');
       div.className = 'instruction';
-      div.innerHTML = `<h2>${name}</h2><p>${text}</p>`;
+      div.innerHTML = `<h2>${name}</h2><textarea id="myTextArea" cols=50 rows=10>${text}</textarea>`;
       container.appendChild(div);
 
       if (idx < instructions.length - 1) {
@@ -91,7 +91,7 @@ async function loadInstructions() {
   /* 6️ If something goes wrong, log the error and show a friendly message. */
     console.error(err);
     document.getElementById('instructions')
-            .innerText = 'Не удалось загрузить данные. Проверьте URL или формат ответа.';
+            .innerText = 'Could not load data. Please check the URL or the response format.';
   }
 }
 
