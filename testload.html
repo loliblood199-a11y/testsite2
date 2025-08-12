@@ -30,7 +30,7 @@
                 const requestBody = {
                     group_encoded: group
                 };
-                //2 Make the request to the API endpoint. /
+                // 2 Make the request to the API endpoint.
                 let response = await fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/database', {
                     method: 'POST',
                     headers: {
@@ -40,10 +40,10 @@
                     },
                     body: JSON.stringify(requestBody)
                 });
-                // 3  Parse the JSON payload. /
-                if (!response.ok) throw new Error(Network error: ${response.status});
+                // 3  Parse the JSON payload.
+                if (!response.ok) throw new Error(`Network error: ${response.status}`);
                 const rawData = await response.json();
-                // 4 Normalise the payload into a single array called instructions. /
+                // 4 Normalise the payload into a single array called instructions.
                 let instructions = [];
                 if (Array.isArray(rawData)) {
                     instructions = rawData;
@@ -59,12 +59,12 @@
                 if (!Array.isArray(instructions)) {
                     throw new Error('Response is not an array of instructions');
                 }
-                // 5️  Render each instruction into the DOM. /
+                // 5 Render each instruction into the DOM.
                 const container = document.getElementById('instructions');
                 instructions.forEach((item, idx) => {
                     const name = item.instruction_name ||
                                  item.instruction_item?.instruction_name ||
-                                 Instruction ${idx + 1};
+                                 `Instruction ${idx + 1}`;
                     const rawText = item.instruction ||
                                     item.instruction_item?.instruction ||
                                     'No text found';
@@ -72,9 +72,11 @@
                     const div = document.createElement('div');
                     div.className = 'instruction';
                     // Unique ids
-                    const textareaId = myTextArea_${idx};
-                    const buttonId = editBtn_${idx};
-					div.innerHTML = <h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${buttonId}">Edit</button>;
+                    const textareaId = `myTextArea_${idx}`;
+                    const buttonId = `editBtn_${idx}`;
+                    div.innerHTML = `<h2>${name}</h2>
+                                     <textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea>
+                                     <button id="${buttonId}">Edit</button>`;
                     // Adding element to DOM
                     container.appendChild(div);
                     const textarea = document.getElementById(textareaId);
@@ -95,13 +97,13 @@
                     }
                 });
             } catch (err) {
-                // 6️ If something goes wrong, log the error and show a friendly message. /
+                // 6 If something goes wrong, log the error and show a friendly message.
                 console.error(err);
                 document.getElementById('instructions')
                         .innerText = 'Could not load data. Please check the URL or the response format.';
             }
         }
-        // 7️  Wait until the DOM is ready before attempting to load instructions. /
+        // 7 Wait until the DOM is ready before attempting to load instructions.
         document.addEventListener('DOMContentLoaded', loadInstructions);
     </script>
 </body>
