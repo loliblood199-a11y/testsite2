@@ -37,7 +37,7 @@
 							let answer = await response.json();
 						
 							// Log the full response to understand its structure
-							document.write('Full Response:', answer.database);
+							document.write('Full Response:',JSON.stringify( answer.database, null, 4));
 						
 						  
 						}
