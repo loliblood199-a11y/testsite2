@@ -73,8 +73,8 @@ async function loadInstructions() {
       const name = item.instruction_name ||
                    item.instruction_item?.instruction_name ||
                    `Instruction ${idx + 1}`;
-      const text = item.instruction ||
-                   item.instruction_item?.instruction ||
+      const text = item.instruction.replace(/\\/g, '\'); ||
+                   item.instruction_item?.instruction.replace(/\\/g, '\'); ||
                    'No text found';
 
       const div = document.createElement('div');
@@ -120,4 +120,5 @@ document.addEventListener('DOMContentLoaded', loadInstructions);
 </script>
 
 </body>
+
 </html>
