@@ -41,7 +41,7 @@
 			  body: JSON.stringify(requestBody)
 			});			
 			const rawData = await response.json();
-			document.write('Full Response:',JSON.stringify( rawData.database, null, 4));
+			document.write('Full Response:',Array.isArray(rawData.database));
 						
 			/* 1. Определяем, что нам передали */
   
