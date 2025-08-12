@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-</head>
-<body>
-    <h1>Loaded</h1>
 	<style>
   body{font-family:Arial,Helvetica,sans-serif;padding:20px;}
   .instruction{margin-bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px;}
@@ -12,6 +8,11 @@
   .instruction p{margin:0;}
   hr{border:none;border-top:1px solid #eee;margin:30px 0;}
 </style>
+</head>
+<body>
+    <h1>Loaded from API</h1>
+
+<div id="instructions"></div>
 	<script>
     // Function to get the value of a specific query parameter by name
 	async function loadInstructions() {
@@ -58,7 +59,7 @@
 							  }
 							});
 							// Log the full response to understand its structure
-							document.write('Full Response:',JSON.stringify( answer.database, null, 4));
+							//document.write('Full Response:',JSON.stringify( answer.database, null, 4));
 						
 						  
 						}
@@ -69,5 +70,4 @@
 	document.addEventListener('DOMContentLoaded', loadInstructions);
 </script>
 </body>
-
 </html>
