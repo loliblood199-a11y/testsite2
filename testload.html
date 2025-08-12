@@ -42,7 +42,8 @@
 			});			
 			const rawData = await response.json();
 			document.write('Full Response:',Array.isArray(rawData.database));
-						
+			
+			document.write('Full Response:',JSON.stringify( rawData.database, null, 4));			
 			/* 1. Определяем, что нам передали */
   
 			let dataArray = [];
