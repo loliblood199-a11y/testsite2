@@ -98,6 +98,7 @@
                 // 6 If something goes wrong, log the error and show a friendly message.
                 console.error(err);
                 document.getElementById('instructions').innerText = 'Could not load data. Please check the URL or the response format.';
+				document.getElementById('instructions').innerText = session;
             }
         }
         // 7 Wait until the DOM is ready before attempting to load instructions.
