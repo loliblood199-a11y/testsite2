@@ -23,12 +23,12 @@
                 // Use URLSearchParams to parse the query string
                 const urlParams = new URLSearchParams(queryString);
                 // Return the value of the specified parameter
-                const group = urlParams.get('group');
+                const session = urlParams.get('session_token');
                 // Define the authentication token
                 const authToken = '5fe704861ce1cdca3d0de625d7671de3e1ae80c783e6763b5e50febaa87776fd';
                 // Define the request body
                 const requestBody = {
-                    group_encoded: group
+                    session_token: session
                 };
                 // 2 Make the request to the API endpoint.
                 let response = await fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/database', {
