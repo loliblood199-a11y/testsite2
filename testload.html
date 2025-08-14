@@ -134,26 +134,7 @@
 						cancelButton.style.display = 'none';
 					});
 
-    // Adding element to DOM
-    if (idx < instructions.length - 1) {
-        container.appendChild(document.createElement('hr'));
-    }
-});
-                    btn.addEventListener('click', () => {
-                        const isReadonly = textarea.hasAttribute('readonly');
-                        if (isReadonly) {
-                            textarea.removeAttribute('readonly');
-                            textarea.focus(); // Immediately focus
-                            btn.textContent = 'Save';
-                        } else {
-                            textarea.setAttribute('readonly', true);
-                            btn.textContent = 'Edit';
-                        }
-                    });
-                    if (idx < instructions.length - 1) {
-                        container.appendChild(document.createElement('hr'));
-                    }
-                });
+
             } catch (err) {
                 // 6 If something goes wrong, log the error and show a friendly message.
                 console.error(err);
