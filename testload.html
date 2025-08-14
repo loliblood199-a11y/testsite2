@@ -100,7 +100,7 @@
 								'Accept': 'application/json',
 								'API-TOKEN': authToken
 							},
-                            body: JSON.stringify({ new_instruction: updatedText, name: name,  })
+                            body: JSON.stringify({ new_instruction: updatedText, name: name,  session_token: session})
                         })
                         .then(response => response.json())
                         .then(data => {
