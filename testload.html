@@ -71,14 +71,74 @@
                     const text = JSON.parse(`"${rawText}"`);
                     const div = document.createElement('div');
                     div.className = 'instruction';
-                    // Unique ids
+                    
+					// Unique ids
                     const textareaId = `myTextArea_${idx}`;
-                    const buttonId = `editBtn_${idx}`;
-                    div.innerHTML = `<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${buttonId}">Edit</button>`;
+                    const editbuttonId = `editBtn_${idx}`;
+					const savebuttonId = `saveBtn_${idx}`;
+					const cancelbuttonId = `cancelBtn_${idx}`;
+			
+					div.innerHTML = `<h2>${name}</h2>
+									<textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea>
+									<button id="${editButtonId}">Edit</button>
+									<button id="${saveButtonId}" style="display:none;">Save</button>
+									<button id="${cancelButtonId}" style="display:none;">Cancel</button>
+								`;
+					
                     // Adding element to DOM
                     container.appendChild(div);
                     const textarea = document.getElementById(textareaId);
-                    const btn = document.getElementById(buttonId);
+					const editButton = document.getElementById(editButtonId);
+					const saveButton = document.getElementById(saveButtonId);
+					const cancelButton = document.getElementById(cancelButtonId);
+					
+					
+					let originalText = text;
+
+					editButton.addEventListener('click', () => {
+						textarea.removeAttribute('readonly');
+						editButton.style.display = 'none';
+						saveButton.style.display = 'inline';
+						cancelButton.style.display = 'inline';
+						originalText = textarea.value;
+					});
+
+					saveButton.addEventListener('click', () => {
+						const updatedText = textarea.value;
+						fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/save', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({ new_instruction: updatedText,
+													name: name})
+						})
+						.then(response => response.json())
+						.then(data => {
+							console.log('Success:', data);
+							textarea.setAttribute('readonly', true);
+							editButton.style.display = 'inline';
+							saveButton.style.display = 'none';
+							cancelButton.style.display = 'none';
+						})
+						.catch((error) => {
+							console.error('Error:', error);
+						});
+					});
+
+					cancelButton.addEventListener('click', () => {
+						textarea.value = originalText;
+						textarea.setAttribute('readonly', true);
+						editButton.style.display = 'inline';
+						saveButton.style.display = 'none';
+						cancelButton.style.display = 'none';
+					});
+
+    // Adding element to DOM
+    if (idx < instructions.length - 1) {
+        container.appendChild(document.createElement('hr'));
+    }
+});
                     btn.addEventListener('click', () => {
                         const isReadonly = textarea.hasAttribute('readonly');
                         if (isReadonly) {
