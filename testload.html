@@ -40,7 +40,7 @@
                     body: JSON.stringify(requestBody)
                 });
                 // 3  Parse the JSON payload.
-                if (!response.ok) throw new Error('Network error: ${response.status}');
+                if (!response.ok) throw new Error("Network error: ${response.status}");
                 const rawData = await response.json();
                 // 4 Normalise the payload into a single array called instructions.
                 let instructions = [];
@@ -71,11 +71,11 @@
                     const div = document.createElement('div');
                     div.className = 'instruction';
                     // Unique ids
-                    const textareaId = 'myTextArea_${idx}';
-					const editButtonId = 'editBtn_${idx}';
-                    const saveButtonId = 'saveBtn_${idx}';
-                    const cancelButtonId = 'cancelBtn_${idx}';
-                    div.innerHTML = '<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${editButtonId}">Edit</button><button id="${saveButtonId}" style="display:none;">Save</button><button id="${cancelButtonId}" style="display:none;">Cancel</button>';
+                    const textareaId = "myTextArea_${idx}";
+					const editButtonId = "editBtn_${idx}";
+                    const saveButtonId = "saveBtn_${idx}";
+                    const cancelButtonId = "cancelBtn_${idx}";
+                    div.innerHTML = `<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${editButtonId}">Edit</button><button id="${saveButtonId}" style="display:none;">Save</button><button id="${cancelButtonId}" style="display:none;">Cancel</button>`;
                     // Adding element to DOM
                     container.appendChild(div);
                     const textarea = document.getElementById(textareaId);
