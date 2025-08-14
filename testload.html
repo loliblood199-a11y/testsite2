@@ -41,7 +41,7 @@
                     body: JSON.stringify(requestBody)
                 });
                 // 3  Parse the JSON payload.
-                if (!response.ok) throw new Error(`Network error: ${response.status}`);
+                if (!response.ok) throw new Error(Network error: ${response.status});
                 const rawData = await response.json();
                 // 4 Normalise the payload into a single array called instructions.
                 let instructions = [];
@@ -64,78 +64,72 @@
                 instructions.forEach((item, idx) => {
                     const name = item.instruction_name ||
                                  item.instruction_item?.instruction_name ||
-                                 `Instruction ${idx + 1}`;
+                                 Instruction ${idx + 1};
                     const rawText = item.instruction ||
                                     item.instruction_item?.instruction ||
                                     'No text found';
-                    const text = JSON.parse(`"${rawText}"`);
+                    const text = JSON.parse("${rawText}");
                     const div = document.createElement('div');
                     div.className = 'instruction';
-                    
-					// Unique ids
-                    const textareaId = `myTextArea_${idx}`;
-                    const editbuttonId = `editBtn_${idx}`;
-					const savebuttonId = `saveBtn_${idx}`;
-					const cancelbuttonId = `cancelBtn_${idx}`;
-					
-					div.innerHTML = `<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${editButtonId}">Edit</button><button id="${saveButtonId}" style="display:none;">Save</button><button id="${cancelButtonId}" style="display:none;">Cancel</button>`;
-		
-					
+                    // Unique ids
+                    const textareaId = myTextArea_${idx};
+					const editButtonId = editBtn_${idx};
+                    const saveButtonId = saveBtn_${idx};
+                    const cancelButtonId = cancelBtn_${idx};
+                    div.innerHTML = `<h2>${name}</h2>
+                                     <textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea>
+                                     <button id="${editButtonId}">Edit</button>
+                                     <button id="${saveButtonId}" style="display:none;">Save</button>
+                                     <button id="${cancelButtonId}" style="display:none;">Cancel</button>`;
                     // Adding element to DOM
                     container.appendChild(div);
                     const textarea = document.getElementById(textareaId);
-					const editButton = document.getElementById(editButtonId);
-					const saveButton = document.getElementById(saveButtonId);
-					const cancelButton = document.getElementById(cancelButtonId);
-					
-
-					let originalText = text;
-
-					editButton.addEventListener('click', () => {
-						textarea.removeAttribute('readonly');
-						editButton.style.display = 'none';
-						saveButton.style.display = 'inline';
-						cancelButton.style.display = 'inline';
-						originalText = textarea.value;
-					});
-
-					saveButton.addEventListener('click', () => {
-						const updatedText = textarea.value;
-						fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/save', {
-							method: 'POST',
+                    const editButton = document.getElementById(editButtonId);
+                    const saveButton = document.getElementById(saveButtonId);
+                    const cancelButton = document.getElementById(cancelButtonId);
+                    let originalText = text;
+                    editButton.addEventListener('click', () => {
+                        textarea.removeAttribute('readonly');
+                        editButton.style.display = 'none';
+                        saveButton.style.display = 'inline';
+                        cancelButton.style.display = 'inline';
+                        originalText = textarea.value;
+                    });
+                    saveButton.addEventListener('click', () => {
+                        const updatedText = textarea.value;
+                        fetch('https://apim.workato.com/bostons/test-tatiana-brat-v1/save', {
+                            method: 'POST',
 							headers: {
-								'Content-Type': 'application/json'
+								'Content-Type': 'application/json',
+								'Accept': 'application/json',
+								'API-TOKEN': authToken
 							},
-							body: JSON.stringify({ new_instruction: updatedText,
-													name: name})
-						})
-						.then(response => response.json())
-						.then(data => {
-							console.log('Success:', data);
-							textarea.setAttribute('readonly', true);
-							editButton.style.display = 'inline';
-							saveButton.style.display = 'none';
-							cancelButton.style.display = 'none';
-						})
-						.catch((error) => {
-							console.error('Error:', error);
-						});
-					});
-
-					cancelButton.addEventListener('click', () => {
-						textarea.value = originalText;
-						textarea.setAttribute('readonly', true);
-						editButton.style.display = 'inline';
-						saveButton.style.display = 'none';
-						cancelButton.style.display = 'none';
-					});
-				});
-
+                            body: JSON.stringify({ new_instruction: updatedText, name: name,  })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Success:', data);
+                            textarea.setAttribute('readonly', true);
+                            editButton.style.display = 'inline';
+                            saveButton.style.display = 'none';
+                            cancelButton.style.display = 'none';
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                    });
+                    cancelButton.addEventListener('click', () => {
+                        textarea.value = originalText;
+                        textarea.setAttribute('readonly', true);
+                        editButton.style.display = 'inline';
+                        saveButton.style.display = 'none';
+                        cancelButton.style.display = 'none';
+                    });
+                });
             } catch (err) {
                 // 6 If something goes wrong, log the error and show a friendly message.
                 console.error(err);
                 document.getElementById('instructions').innerText = 'Could not load data. Please check the URL or the response format.';
-				document.getElementById('instructions').innerText = session;
             }
         }
         // 7 Wait until the DOM is ready before attempting to load instructions.
