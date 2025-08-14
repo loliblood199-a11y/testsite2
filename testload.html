@@ -76,7 +76,7 @@
 					const editButtonId = editBtn_${idx};
                     const saveButtonId = saveBtn_${idx};
                     const cancelButtonId = cancelBtn_${idx};
-                    div.innerHTML = `<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${editButtonId}">Edit</button><button id="${saveButtonId}" style="display:none;">Save</button><button id="${cancelButtonId}" style="display:none;">Cancel</button>`;
+                    div.innerHTML = '<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${editButtonId}">Edit</button><button id="${saveButtonId}" style="display:none;">Save</button><button id="${cancelButtonId}" style="display:none;">Cancel</button>';
                     // Adding element to DOM
                     container.appendChild(div);
                     const textarea = document.getElementById(textareaId);
@@ -101,16 +101,13 @@
 								'API-TOKEN': authToken
 							},
                             body: JSON.stringify({ new_instruction: updatedText, name: name,  session_token: session})
-                        })
-                        .then(response => response.json())
-                        .then(data => {
+                        }).then(response => response.json()).then(data => {
                             console.log('Success:', data);
                             textarea.setAttribute('readonly', true);
                             editButton.style.display = 'inline';
                             saveButton.style.display = 'none';
                             cancelButton.style.display = 'none';
-                        })
-                        .catch((error) => {
+                        }).catch((error) => {
                             console.error('Error:', error);
                         });
                     });
