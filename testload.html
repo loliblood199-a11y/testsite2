@@ -76,11 +76,7 @@
 					const editButtonId = editBtn_${idx};
                     const saveButtonId = saveBtn_${idx};
                     const cancelButtonId = cancelBtn_${idx};
-                    div.innerHTML = `<h2>${name}</h2>
-                                     <textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea>
-                                     <button id="${editButtonId}">Edit</button>
-                                     <button id="${saveButtonId}" style="display:none;">Save</button>
-                                     <button id="${cancelButtonId}" style="display:none;">Cancel</button>`;
+                    div.innerHTML = `<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${editButtonId}">Edit</button><button id="${saveButtonId}" style="display:none;">Save</button><button id="${cancelButtonId}" style="display:none;">Cancel</button>`;
                     // Adding element to DOM
                     container.appendChild(div);
                     const textarea = document.getElementById(textareaId);
