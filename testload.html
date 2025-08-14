@@ -40,7 +40,7 @@
                     body: JSON.stringify(requestBody)
                 });
                 // 3  Parse the JSON payload.
-                if (!response.ok) throw new Error(Network error: ${response.status});
+                if (!response.ok) throw new Error('Network error: ${response.status}');
                 const rawData = await response.json();
                 // 4 Normalise the payload into a single array called instructions.
                 let instructions = [];
