@@ -63,7 +63,7 @@
                 instructions.forEach((item, idx) => {
                     const name = item.instruction_name ||
                                  item.instruction_item?.instruction_name ||
-                                 Instruction ${idx + 1};
+                                 `Instruction ${idx + 1}`;
                     const rawText = item.instruction ||
                                     item.instruction_item?.instruction ||
                                     'No text found';
@@ -71,10 +71,10 @@
                     const div = document.createElement('div');
                     div.className = 'instruction';
                     // Unique ids
-                    const textareaId = "myTextArea_${idx}";
-					const editButtonId = "editBtn_${idx}";
-                    const saveButtonId = "saveBtn_${idx}";
-                    const cancelButtonId = "cancelBtn_${idx}";
+                    const textareaId = `myTextArea_${idx}`;
+					const editButtonId = `editBtn_${idx}`;
+                    const saveButtonId = `saveBtn_${idx}`;
+                    const cancelButtonId = `cancelBtn_${idx}`;
                     div.innerHTML = `<h2>${name}</h2><textarea id="${textareaId}" cols="50" rows="10" readonly>${text}</textarea><button id="${editButtonId}">Edit</button><button id="${saveButtonId}" style="display:none;">Save</button><button id="${cancelButtonId}" style="display:none;">Cancel</button>`;
                     // Adding element to DOM
                     container.appendChild(div);
